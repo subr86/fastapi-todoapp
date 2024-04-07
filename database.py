@@ -4,7 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from decouple import config
 
 # Postgresql DB
-SQLALCHEMY_DATABASE_URI = config('SQLALCHEMY_DATABASE_URI')
+# SQLALCHEMY_DATABASE_URI = config('SQLALCHEMY_DATABASE_URI')
+SQLALCHEMY_DATABASE_URI = 'sqlite:///./todosapp.db'
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
