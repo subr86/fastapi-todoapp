@@ -1,0 +1,61 @@
+{% include 'layout.html' %}
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            Your Todos
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">List of your Todos</h5>
+            <p class="card-text">Information....</p>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for todo in todos %}
+                    <tr class="pointer">
+                        <td>{{ loop.index }}</td>
+                        <td class="{% if todo.completed %}strike-through-td{% endif %}">{{ todo.title }}</td>
+                        <td>{{ todo.description }}</td>
+                        <td>{{ todo.priority }}</td>
+                        <td>
+                            {% if todo.completed %}
+                                <button onclick="window.location.href='complete-todo/{{ todo.id }}'"
+                                        type="button" class="btn btn-sm btn-warning">
+                                    <i class="bi bi-check-all"></i>
+                                </button>
+                            {% else %}
+                                <button onclick="window.location.href='complete-todo/{{ todo.id }}'"
+                                        type="button" class="btn btn-sm btn-success">
+                                    <i class="bi-check"></i>
+                                </button>
+                            {% endif %}
+                            <button onclick="window.location.href='edit-todo/{{ todo.id }}'"
+                                    type="button" class="btn btn-sm btn-info">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button onclick="window.location.href='/todos/delete-todo/{{ todo.id }}'"
+                                    type="button" class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <a class="btn btn-primary" href="add-todo"><i class="bi bi-plus-circle"></i> New Todo</a>
+
+        </div>
+    </div>
+</div>

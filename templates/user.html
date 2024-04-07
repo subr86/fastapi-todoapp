@@ -1,0 +1,85 @@
+{% include 'layout.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    Edit account
+                </div>
+                <div class="card-body">
+                    {% if message %}
+                        {% if message == 'Account saved' %}
+                            <div class="alert alert-success" role="alert">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    <form method="post" action="/user">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" name="email" value="{{ user.email }}"
+                                   required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username" value="{{ user.username }}"
+                                   required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>First name</label>
+                            <input type="text" class="form-control" name="first_name" value="{{ user.first_name }}"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last name</label>
+                            <input type="text" class="form-control" name="last_name" value="{{ user.last_name }}"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone number</label>
+                            <input type="text" class="form-control" name="phone_number" value="{{ user.phone_number }}"
+                                   required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    Change password
+                </div>
+                <div class="card-body">
+                    {% if message_ch_pass %}
+                        {% if message_ch_pass == 'Password changed successfully' %}
+                            <div class="alert alert-success" role="alert">
+                                {{ message_ch_pass }}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message_ch_pass }}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    <form method="post" action="/user/change_password">
+                        <div class="form-group">
+                            <label>Current password</label>
+                            <input type="password" class="form-control" name="current_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label>New password</label>
+                            <input type="password" class="form-control" name="new_password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
