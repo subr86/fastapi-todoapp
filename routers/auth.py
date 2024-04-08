@@ -91,10 +91,10 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate user.")
 
 
-@router.get("/users", status_code=status.HTTP_200_OK)
-async def get_users(db: db_dependency):
-    users = db.query(Users).all()
-    return users
+# @router.get("/users", status_code=status.HTTP_200_OK)
+# async def get_users(db: db_dependency):
+#     users = db.query(Users).all()
+#     return users
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
